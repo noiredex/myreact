@@ -14,7 +14,7 @@ export async function action({ request, params }) {
     updates.first; // "Some"
     updates.last; // "Name"
     await updateContact(params.contactId, updates);
-    return redirect(`/contacts/${contact.id}/edit`);
+    return redirect(`/contacts/${params.contactId}`);
 }
 
 export default function EditContact() {

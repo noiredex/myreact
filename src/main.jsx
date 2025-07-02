@@ -24,6 +24,8 @@ import {
 
 import "./index.css";
 
+import Index from "./routes/index";
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -32,6 +34,7 @@ const router = createBrowserRouter([
         loader: rootLoader,
         action: rootAction,
         children: [
+            { index: true, element: <index /> },
             {
                 path: "contacts/:contactId",
                 element: <Contact />,

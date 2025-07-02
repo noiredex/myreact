@@ -1,54 +1,59 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import Root from "./routes/root";
 import ErrorPage from "./error-page";
+import { action as destroyAction } from "./routes/destroy";
 
 import Contact, {
-    loader as contactLoader, } 
+    loader as contactLoader,
+}
     from "./routes/contact";
 
-import Root, { 
+import Root, {
     loader as rootLoader,
-action as rootAction,
- } from "./routes/root";
+    action as rootAction,
+} from "./routes/root";
 
 import EditContact, {
     action as editAction,
 } from "./routes/edit";
 
 import {
-  createBrowserRouter,
-  RouterProvider,
+    createBrowserRouter,
+    RouterProvider,
 } from "react-router-dom";
 
 import "./index.css";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
-    children: [
-      {
-        path: "contacts/:contactId",
-        element: <Contact />,
-        loader: contactLoader,
-      },
-        {
-        path: "contacts/:contactId/edit",
-        element: <EditContact />,
-        loader: contactLoader,
-        action: editAction,
-      },
-    ],
-  },
-//    element: <div>Hello world!</div>,
+    {
+        path: "/",
+        element: <Root />,
+        errorElement: <ErrorPage />,
+        loader: rootLoader,
+        action: rootAction,
+        children: [
+            {
+                path: "contacts/:contactId",
+                element: <Contact />,
+                loader: contactLoader,
+            },
+            {
+                path: "contacts/:contactId/edit",
+                element: <EditContact />,
+                loader: contactLoader,
+                action: editAction,
+            },
+            {
+                path: "contacts/:contactId/destroy",
+                action: destroyAction,
+            },
+        ],
+    },
+    //    element: <div>Hello world!</div>,
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
 );

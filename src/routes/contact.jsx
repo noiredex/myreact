@@ -9,7 +9,7 @@ import {
 import { getContact, updateContact } from "../contacts";
 
 export async function loader({ params }) {
-    const contact = await getContact(params.contactId);
+  const contact = await getContact(params.contactId);
   if (!contact) {
     throw new Response("", {
       status: 404,
@@ -82,11 +82,9 @@ export default function Contact() {
             method="post"
             action="destroy"
             onSubmit={(event) => {
-              if (
-                !confirm(
-                  "Please confirm you want to delete this record."
-                )
-              ) {
+              if (!confirm(
+                  "Please confirm you want to delete this record.")) 
+                  {
                 event.preventDefault();
               }
             }}

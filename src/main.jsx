@@ -5,7 +5,7 @@ import { action as destroyAction } from "./routes/destroy";
 
 import Contact, {
     loader as contactLoader,
-    action as contactLoader,
+    action as contactAction,
 }
     from "./routes/contact";
 
@@ -35,13 +35,17 @@ const router = createBrowserRouter([
         loader: rootLoader,
         action: rootAction,
         children: [
-            { index: true, element: <index /> },
+            {
+                index: true,
+                element: <Index />
+            },
             {
                 path: "contacts/:contactId",
                 element: <Contact />,
                 loader: contactLoader,
                 action: contactAction,
             },
+            /* the rest of the routes */
             {
                 path: "contacts/:contactId/edit",
                 element: <EditContact />,

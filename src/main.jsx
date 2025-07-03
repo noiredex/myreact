@@ -5,6 +5,7 @@ import { action as destroyAction } from "./routes/destroy";
 
 import Contact, {
     loader as contactLoader,
+    action as contactLoader,
 }
     from "./routes/contact";
 
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
                 path: "contacts/:contactId",
                 element: <Contact />,
                 loader: contactLoader,
+                action: contactAction,
             },
             {
                 path: "contacts/:contactId/edit",
